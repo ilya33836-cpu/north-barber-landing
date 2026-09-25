@@ -13,6 +13,7 @@ dist-ssr
 *.local
 shots
 tmp
+.vercel
 
 # Editor directories and files
 .vscode/*

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, Phone, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CONTACT, NAV, SECTION_IDS } from '../data/content'
 import { useActiveSection, useLockBody, useScrolled } from '../lib/hooks'
 import { EASE } from '../lib/motion'
@@ -14,6 +14,15 @@ export default function Header() {
   const active = useActiveSection(SECTION_LIST)
 
   useLockBody(open)
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
 
   const close = () => setOpen(false)
 
