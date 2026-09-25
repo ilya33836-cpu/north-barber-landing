@@ -179,7 +179,7 @@ const rawShots: Shot[] = [
     caption: 'Проработка деталей',
   },
   {
-    id: 'photo-1621605582931-d1d3e6564943',
+    id: 'photo-1621645582931-d1d3e6564943',
     ratio: '1 / 1',
     caption: 'Кресло NORTH',
   },
