@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 import { CONTACT, MARQUEE, NAV } from '../data/content'
 import { InstagramGlyph, TelegramGlyph, Wordmark } from './ui/Brand'
@@ -30,7 +30,7 @@ export default function Footer() {
         ))}
       </div>
 
-      <div className="shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:py-20">
+      <div className="shell grid gap-10 py-12 sm:gap-12 sm:py-16 md:grid-cols-[1.4fr_1fr_1fr] md:py-20">
         <div>
           <Wordmark />
           <p className="mt-6 max-w-xs text-[0.88rem] leading-relaxed text-mute">
@@ -38,7 +38,7 @@ export default function Footer() {
             барбершопа.
           </p>
 
-          <div className="mt-8 flex items-center gap-3">
+          <div className="mt-7 flex items-center gap-3 sm:mt-8">
             {SOCIALS.map((social) => (
               <a
                 key={social.label}
@@ -93,19 +93,19 @@ export default function Footer() {
 
           <a
             href="#booking"
-            className="btn btn-gold mt-8 w-full sm:w-auto"
+            className="btn btn-gold mt-7 h-12 w-full sm:mt-8 sm:h-auto sm:w-auto"
           >
             Записаться
           </a>
         </div>
       </div>
 
-      <div className="border-t border-white/[0.07]">
+      <div className="border-t border-white/[0.07] pb-20 sm:pb-0">
         <div className="shell flex flex-col items-center justify-between gap-4 py-7 sm:flex-row">
           <p className="text-[0.75rem] text-mute">
             © 2026 NORTH BARBER — Concept Website
           </p>
-          <motion.a
+          <m.a
             href="#hero"
             whileHover={{ y: -3 }}
             transition={{ duration: 0.35 }}
@@ -113,7 +113,7 @@ export default function Footer() {
           >
             Наверх
             <ArrowUp className="h-3.5 w-3.5" strokeWidth={1.8} />
-          </motion.a>
+          </m.a>
         </div>
       </div>
     </footer>

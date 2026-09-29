@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { FAQ } from '../data/content'
@@ -9,8 +9,8 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <Section tone="raised" className="py-20 md:py-28">
-      <div className="shell grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+    <Section tone="raised" className="py-16 sm:py-20 md:py-28">
+      <div className="shell grid gap-8 sm:gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading
             eyebrow="FAQ"
@@ -21,18 +21,18 @@ export default function Faq() {
             }
             lead="Если ответа нет — позвоните или напишите, мастера ответят лично."
           />
-          <motion.p
+          <m.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={viewportOnce}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-8 text-[0.8rem] text-mute"
+            className="mt-6 text-[0.8rem] text-mute sm:mt-8"
           >
             +7 (999) 123-45-67
-          </motion.p>
+          </m.p>
         </div>
 
-        <motion.ul
+        <m.ul
           variants={stagger(0.08)}
           initial="hidden"
           whileInView="show"
@@ -42,15 +42,15 @@ export default function Faq() {
           {FAQ.map((item, i) => {
             const isOpen = open === i
             return (
-              <motion.li key={item.q} variants={fadeUp} className="border-b border-white/[0.08]">
+              <m.li key={item.q} variants={fadeUp} className="border-b border-white/[0.08]">
                 <button
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
-                  className="flex w-full items-start justify-between gap-6 py-6 text-left"
+                  className="flex min-h-[3.25rem] w-full items-start justify-between gap-4 py-5 text-left sm:gap-6 sm:py-6"
                 >
                   <span
-                    className={`font-display text-[1.02rem] font-bold tracking-tight transition-colors duration-300 md:text-[1.12rem] ${
+                    className={`font-display text-[0.98rem] font-bold tracking-tight transition-colors duration-300 sm:text-[1.12rem] ${
                       isOpen ? 'text-bronze' : 'text-bone'
                     }`}
                   >
@@ -69,7 +69,7 @@ export default function Faq() {
 
                 <AnimatePresence initial={false}>
                   {isOpen ? (
-                    <motion.div
+                    <m.div
                       key="content"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
@@ -77,16 +77,16 @@ export default function Faq() {
                       transition={{ duration: 0.45, ease: EASE }}
                       className="overflow-hidden"
                     >
-                      <p className="max-w-2xl pb-7 pr-10 text-[0.9rem] leading-relaxed text-mute">
+                      <p className="max-w-2xl pb-6 pr-6 text-[0.9rem] leading-relaxed text-mute sm:pb-7 sm:pr-10">
                         {item.a}
                       </p>
-                    </motion.div>
+                    </m.div>
                   ) : null}
                 </AnimatePresence>
-              </motion.li>
+              </m.li>
             )
           })}
-        </motion.ul>
+        </m.ul>
       </div>
     </Section>
   )

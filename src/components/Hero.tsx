@@ -1,8 +1,9 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowRight, Clock, Images, Star } from 'lucide-react'
 import { FREE_SLOTS } from '../data/content'
 import { IMG } from '../lib/images'
 import { EASE, stagger } from '../lib/motion'
+import Photo from './ui/Photo'
 
 const STATS = [
   { value: '12', label: 'лет практики' },
@@ -11,27 +12,25 @@ const STATS = [
 ]
 
 export default function Hero() {
-  const reduce = useReducedMotion()
-
   return (
-    <section id="hero" className="relative min-h-screen overflow-hidden bg-ink pt-28 md:pt-32">
+    <section id="hero" className="relative min-h-svh overflow-hidden bg-ink pt-24 sm:pt-28 md:pt-32">
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(120%_85%_at_85%_15%,rgba(200,155,90,0.16),transparent_58%),radial-gradient(90%_70%_at_10%_90%,rgba(200,155,90,0.07),transparent_60%)]"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(to_right,rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.055)_1px,transparent_1px)] [background-size:88px_88px] [mask-image:radial-gradient(75%_60%_at_50%_40%,#000,transparent)]"
+        className="absolute inset-0 hidden opacity-[0.16] [background-image:linear-gradient(to_right,rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.055)_1px,transparent_1px)] [background-size:88px_88px] [mask-image:radial-gradient(75%_60%_at_50%_40%,#000,transparent)] md:block"
       />
 
-      <div className="shell relative grid items-center gap-14 pb-20 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10 lg:pb-28">
-        <motion.div
+      <div className="shell relative grid items-center gap-10 pb-20 sm:gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:gap-10 lg:pb-28">
+        <m.div
           variants={stagger(0.11, 0.15)}
           initial="hidden"
           animate="show"
           className="max-w-xl"
         >
-          <motion.div
+          <m.div
             variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
             transition={{ duration: 0.7, ease: EASE }}
             className="inline-flex items-center gap-3 border border-bronze/30 bg-bronze/[0.07] px-4 py-2"
@@ -40,14 +39,14 @@ export default function Hero() {
             <span className="text-[0.625rem] font-medium uppercase tracking-[0.3em] text-bronze-soft">
               Премиальный барбершоп
             </span>
-          </motion.div>
+          </m.div>
 
-          <motion.h1
+          <m.h1
             variants={{
               hidden: { opacity: 0, y: 30 },
               show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
             }}
-            className="mt-7 text-[clamp(2.6rem,6.4vw,4.9rem)] leading-[0.98] text-bone"
+            className="mt-6 text-[clamp(2.35rem,7.4vw,4.9rem)] leading-[0.98] text-bone sm:mt-7 sm:text-[clamp(2.6rem,6.4vw,4.9rem)]"
           >
             Стрижка,
             <br />
@@ -70,24 +69,24 @@ export default function Hero() {
               </svg>
             </span>{' '}
             за тебя.
-          </motion.h1>
+          </m.h1>
 
-          <motion.p
+          <m.p
             variants={{
               hidden: { opacity: 0, y: 22 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
             }}
-            className="mt-7 max-w-md text-[0.98rem] leading-relaxed text-mute md:text-[1.06rem]"
+            className="mt-6 max-w-md text-[0.95rem] leading-relaxed text-mute sm:mt-7 md:text-[1.06rem]"
           >
             Современные мужские стрижки, бритьё и уход в атмосфере настоящего барбершопа.
-          </motion.p>
+          </m.p>
 
-          <motion.div
+          <m.div
             variants={{
               hidden: { opacity: 0, y: 22 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
             }}
-            className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:gap-4"
+            className="mt-8 flex flex-col items-stretch gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4"
           >
             <a href="#booking" className="btn btn-gold group">
               Записаться
@@ -100,49 +99,51 @@ export default function Hero() {
               <Images className="h-4 w-4" strokeWidth={1.6} />
               Смотреть работы
             </a>
-          </motion.div>
+          </m.div>
 
-          <motion.ul
+          <m.ul
             variants={{
               hidden: { opacity: 0, y: 20 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
             }}
-            className="mt-14 grid max-w-md grid-cols-3 gap-4 border-t border-white/[0.07] pt-7"
+            className="mt-10 grid max-w-md grid-cols-3 gap-3 border-t border-white/[0.07] pt-6 sm:mt-14 sm:gap-4 sm:pt-7"
           >
             {STATS.map((stat) => (
               <li key={stat.label}>
-                <div className="font-display text-2xl font-extrabold text-bone md:text-[1.75rem]">
+                <div className="font-display text-[1.4rem] font-extrabold text-bone sm:text-2xl md:text-[1.75rem]">
                   {stat.value}
                 </div>
-                <div className="mt-1.5 text-[0.7rem] leading-snug text-mute">{stat.label}</div>
+                <div className="mt-1.5 text-[0.68rem] leading-snug text-mute sm:text-[0.7rem]">
+                  {stat.label}
+                </div>
               </li>
             ))}
-          </motion.ul>
-        </motion.div>
+          </m.ul>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.25, ease: EASE }}
           className="relative"
         >
-          <div className="absolute -inset-4 border border-bronze/15" aria-hidden="true" />
-          <div className="absolute -left-6 -top-6 h-24 w-24 border-l border-t border-bronze/50" aria-hidden="true" />
+          <div className="absolute -inset-2 border border-bronze/15 sm:-inset-4" aria-hidden="true" />
           <div
-            className="absolute -bottom-6 -right-6 h-24 w-24 border-r border-b border-bronze/50"
+            className="absolute -left-3 -top-3 h-20 w-20 border-l border-t border-bronze/50 sm:-left-6 sm:-top-6 sm:h-24 sm:w-24"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute -bottom-3 -right-3 h-20 w-20 border-r border-b border-bronze/50 sm:-bottom-6 sm:-right-6 sm:h-24 sm:w-24"
             aria-hidden="true"
           />
 
-          <div className="relative aspect-[4/5] overflow-hidden bg-ink-3">
-            <motion.img
-              src={IMG.heroBarber}
+          <div className="relative bg-ink-3">
+            <Photo
+              photo={IMG.heroBarber}
               alt="Барбер укладывает волосы клиенту в кресле NORTH BARBER"
-              width={1200}
-              height={1500}
-              fetchPriority="high"
-              initial={reduce ? undefined : { scale: 1.12 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1.6, ease: EASE }}
+              sizes="(min-width: 1024px) 44vw, (min-width: 640px) 60vw, 92vw"
+              priority
+              ratioClass="aspect-[4/5]"
               className="h-full w-full object-cover object-center"
             />
             <div
@@ -151,11 +152,11 @@ export default function Hero() {
             />
           </div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.75, ease: EASE }}
-            className="absolute -bottom-8 -left-4 w-[15.5rem] border border-bronze/25 bg-ink-2/95 p-5 backdrop-blur-md sm:-left-8 lg:-left-10"
+            className="absolute -bottom-6 left-2 w-[min(17rem,calc(100%-1rem))] border border-bronze/25 bg-ink-2/95 p-4 backdrop-blur-md sm:-bottom-8 sm:-left-8 sm:w-[15.5rem] sm:p-5 lg:-left-10"
           >
             <div className="flex items-center gap-2">
               <Clock className="h-3.5 w-3.5 text-bronze" strokeWidth={1.8} />
@@ -178,7 +179,7 @@ export default function Hero() {
               <Star className="h-3 w-3 fill-bronze text-bronze" />
               <span className="text-[0.7rem] text-mute">4.9 — 214 отзывов</span>
             </div>
-          </motion.div>
+          </m.div>
 
           <div
             className="absolute -right-8 top-10 hidden flex-col items-center gap-3 text-[0.6rem] uppercase tracking-[0.28em] text-mute lg:flex"
@@ -187,7 +188,7 @@ export default function Hero() {
             <span className="h-16 w-px bg-gradient-to-b from-bronze/60 to-transparent" />
             Москва
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

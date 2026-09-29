@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import { ArrowRight, Check, Phone } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { SERVICE_OPTIONS } from '../data/content'
@@ -51,7 +51,7 @@ export default function CtaBooking() {
   }
 
   return (
-    <section id="booking" className="relative overflow-hidden bg-ink py-20 md:py-28">
+    <section id="booking" className="relative overflow-hidden bg-ink py-16 sm:py-20 md:py-28">
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[radial-gradient(90%_120%_at_50%_0%,rgba(200,155,90,0.14),transparent_62%)]"
@@ -61,52 +61,52 @@ export default function CtaBooking() {
         className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bronze/45 to-transparent"
       />
 
-      <div className="shell relative grid gap-14 lg:grid-cols-[1fr_0.95fr] lg:gap-20">
-        <motion.div
+      <div className="shell relative grid gap-10 sm:gap-12 lg:grid-cols-[1fr_0.95fr] lg:gap-20">
+        <m.div
           variants={stagger(0.12)}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
           className="flex flex-col justify-center"
         >
-          <motion.p variants={fadeUp} className="eyebrow">
+          <m.p variants={fadeUp} className="eyebrow">
             Запись
-          </motion.p>
-          <motion.h2
+          </m.p>
+          <m.h2
             variants={fadeUp}
-            className="mt-5 text-[clamp(2.1rem,5.2vw,3.6rem)] text-bone"
+            className="mt-4 text-[clamp(1.9rem,5.6vw,3.6rem)] text-bone sm:mt-5"
           >
             Готов обновить свой <span className="text-bronze">стиль?</span>
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             variants={fadeUp}
-            className="mt-6 max-w-md text-[0.98rem] leading-relaxed text-mute md:text-[1.05rem]"
+            className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-mute sm:mt-6 md:text-[1.05rem]"
           >
             Оставьте заявку — мы свяжемся с вами для подтверждения записи.
-          </motion.p>
+          </m.p>
 
-          <motion.ul
+          <m.ul
             variants={stagger(0.1, 0.2)}
-            className="mt-11 space-y-4 border-t border-white/[0.08] pt-9"
+            className="mt-8 space-y-4 border-t border-white/[0.08] pt-7 sm:mt-11 sm:pt-9"
           >
             {[
               'Ответ в течение 15 минут в рабочее время',
               'Подберём удобное время и мастера',
               'Никакой предоплаты — оплата после визита',
             ].map((line) => (
-              <motion.li key={line} variants={fadeUp} className="flex items-start gap-3.5">
+              <m.li key={line} variants={fadeUp} className="flex items-start gap-3.5">
                 <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center border border-bronze/40 text-bronze">
                   <Check className="h-3 w-3" strokeWidth={2.4} />
                 </span>
                 <span className="text-[0.9rem] text-mute">{line}</span>
-              </motion.li>
+              </m.li>
             ))}
-          </motion.ul>
+          </m.ul>
 
-          <motion.a
+          <m.a
             variants={fadeUp}
             href="tel:+79991234567"
-            className="mt-10 inline-flex w-fit items-center gap-3 text-bone transition-colors duration-300 hover:text-bronze"
+            className="mt-8 inline-flex min-h-[2.75rem] w-fit items-center gap-3 text-bone transition-colors duration-300 hover:text-bronze sm:mt-10"
           >
             <span className="grid h-11 w-11 place-items-center border border-bronze/35 text-bronze">
               <Phone className="h-4 w-4" strokeWidth={1.5} />
@@ -117,10 +117,10 @@ export default function CtaBooking() {
                 Ежедневно 10:00–22:00
               </span>
             </span>
-          </motion.a>
-        </motion.div>
+          </m.a>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -129,12 +129,12 @@ export default function CtaBooking() {
         >
           <div
             aria-hidden="true"
-            className="absolute -inset-3 border border-bronze/12"
+            className="absolute -inset-2 border border-bronze/12 sm:-inset-3"
           />
-          <div className="relative border border-white/[0.09] bg-ink-2/80 p-7 backdrop-blur-sm md:p-10">
+          <div className="relative border border-white/[0.09] bg-ink-2/80 p-6 sm:p-7 md:p-10">
             <AnimatePresence mode="wait">
               {sent ? (
-                <motion.div
+                <m.div
                   key="success"
                   initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -142,14 +142,14 @@ export default function CtaBooking() {
                   transition={{ duration: 0.5, ease: EASE }}
                   className="flex min-h-[24rem] flex-col items-center justify-center text-center"
                 >
-                  <motion.span
+                  <m.span
                     initial={{ scale: 0.7, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
                     className="grid h-16 w-16 place-items-center border border-bronze/45 bg-bronze/12 text-bronze"
                   >
                     <Check className="h-7 w-7" strokeWidth={2} />
-                  </motion.span>
+                  </m.span>
                   <h3 className="mt-7 text-2xl font-extrabold text-bone">Заявка отправлена</h3>
                   <p className="mt-3 max-w-xs text-[0.9rem] leading-relaxed text-mute">
                     Спасибо, {fields.name.trim()}. Мы перезвоним на{' '}
@@ -162,13 +162,13 @@ export default function CtaBooking() {
                       setSent(false)
                       setFields(EMPTY)
                     }}
-                    className="btn btn-outline mt-9"
+                    className="btn btn-outline mt-9 h-12"
                   >
                     Отправить ещё одну
                   </button>
-                </motion.div>
+                </m.div>
               ) : (
-                <motion.form
+                <m.form
                   key="form"
                   onSubmit={onSubmit}
                   noValidate
@@ -176,7 +176,7 @@ export default function CtaBooking() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, y: -12 }}
                   transition={{ duration: 0.4, ease: EASE }}
-                  className="space-y-5"
+                  className="space-y-4 sm:space-y-5"
                 >
                   <p className="text-[0.65rem] font-medium uppercase tracking-[0.26em] text-bronze">
                     Форма записи
@@ -244,7 +244,7 @@ export default function CtaBooking() {
                     ) : null}
                   </div>
 
-                  <button type="submit" className="btn btn-gold group mt-2 w-full">
+                  <button type="submit" className="btn btn-gold group mt-2 h-12 w-full">
                     Записаться
                     <ArrowRight
                       className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1"
@@ -255,11 +255,11 @@ export default function CtaBooking() {
                   <p className="text-center text-[0.7rem] leading-relaxed text-mute/70">
                     Нажимая кнопку, вы соглашаетесь на обработку персональных данных.
                   </p>
-                </motion.form>
+                </m.form>
               )}
             </AnimatePresence>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

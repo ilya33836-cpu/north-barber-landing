@@ -24,4 +24,4 @@ export function stagger(staggerChildren = 0.08, delayChildren = 0): Variants {
   }
 }
 
-export const viewportOnce = { once: true, amount: 0.25 } as const
+export const viewportOnce = { once: true, amount: 0.05 } as const

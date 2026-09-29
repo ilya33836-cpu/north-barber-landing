@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { EASE, fadeUp, stagger, viewportOnce } from '../../lib/motion'
 
@@ -10,7 +10,7 @@ type RevealProps = {
 }
 
 export function Reveal({ children, delay = 0, className, as = 'div' }: RevealProps) {
-  const Comp = motion[as]
+  const Comp = m[as]
   return (
     <Comp
       className={className}
@@ -41,28 +41,31 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   const centered = align === 'center'
   return (
-    <motion.div
+    <m.div
       variants={stagger(0.12)}
       initial="hidden"
       whileInView="show"
       viewport={viewportOnce}
       className={`${centered ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'} ${className}`}
     >
-      <motion.p variants={fadeUp} className={`eyebrow ${centered ? 'justify-center' : ''}`}>
+      <m.p variants={fadeUp} className={`eyebrow ${centered ? 'justify-center' : ''}`}>
         {eyebrow}
-      </motion.p>
-      <motion.h2
+      </m.p>
+      <m.h2
         variants={fadeUp}
-        className="mt-5 text-[clamp(2rem,5vw,3.6rem)] text-bone"
+        className="mt-4 text-[clamp(1.8rem,5.4vw,3.6rem)] text-bone sm:mt-5"
       >
         {title}
-      </motion.h2>
+      </m.h2>
       {lead ? (
-        <motion.p variants={fadeUp} className="mt-5 text-base leading-relaxed text-mute md:text-lg">
+        <m.p
+          variants={fadeUp}
+          className="mt-4 text-[0.95rem] leading-relaxed text-mute sm:mt-5 md:text-lg"
+        >
           {lead}
-        </motion.p>
+        </m.p>
       ) : null}
-    </motion.div>
+    </m.div>
   )
 }
 

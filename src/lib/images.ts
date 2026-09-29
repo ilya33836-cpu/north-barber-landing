@@ -1,31 +1,51 @@
 const UNSPLASH = 'https://images.unsplash.com'
 
-type ImgOpts = {
-  w: number
-  h?: number
+export type Photo = {
+  id: string
+  /** ширина / высота */
+  ratio: number
+  /** кандидаты ширины для srcset */
+  widths: number[]
+  q: number
 }
 
-export function unsplash(id: string, { w, h }: ImgOpts): string {
+type UrlOpts = { w: number; h?: number; q?: number }
+
+function url(id: string, { w, h, q }: UrlOpts): string {
   const params = new URLSearchParams({
     auto: 'format',
     fit: 'crop',
     fm: 'jpg',
-    q: '78',
+    q: String(q ?? 70),
     w: String(w),
   })
   if (h) params.set('h', String(h))
   return `${UNSPLASH}/${id}?${params.toString()}`
 }
 
+export function photo(id: string, ratio: number, widths: number[], q = 68): Photo {
+  return { id, ratio, widths, q }
+}
+
+export function photoUrl(p: Photo, w: number): string {
+  return url(p.id, { w, h: Math.round(w / p.ratio), q: p.q })
+}
+
+export function photoSrcSet(p: Photo): string {
+  return p.widths.map((w) => `${photoUrl(p, w)} ${w}w`).join(', ')
+}
+
+/** Крошечная превью-картинка: пока грузится основная, фон не выглядит пустым. */
+export function photoLqip(p: Photo): string {
+  return url(p.id, { w: 24, h: Math.round(24 / p.ratio), q: 25 })
+}
+
+export const GALLERY_WIDTHS = [320, 480, 720, 1080]
+export const GALLERY_LARGE_WIDTHS = [720, 1200, 1800]
+export const CARD_WIDTHS = [360, 540, 720, 960]
+export const HERO_WIDTHS = [420, 640, 900, 1200]
+
 export const IMG = {
-  heroInterior: unsplash('photo-1585747860715-2ba37e788b70', { w: 1400, h: 1750 }),
-  heroBarber: unsplash('photo-1605497788044-5a32c7078486', { w: 1200, h: 1500 }),
-  interiorRow: unsplash('photo-1536520002442-39764a41e987', { w: 1400, h: 1050 }),
-  interiorSalon: unsplash('photo-1592647420148-bfcc177e2117', { w: 1200, h: 900 }),
-  chairSilver: unsplash('photo-1621645582931-d1d3e6564943', { w: 1200, h: 900 }),
-  exterior: unsplash('photo-1678356164573-9a534fe43958', { w: 1200, h: 800 }),
-  toolsFlatlay: unsplash('photo-1621605815971-fbc98d665033', { w: 1200, h: 800 }),
-  masterAlex: unsplash('photo-1567894340315-735d7c361db0', { w: 900, h: 1200 }),
-  masterMax: unsplash('photo-1635273051937-a0ddef9573b6', { w: 900, h: 1200 }),
-  masterDanil: unsplash('photo-1593702275687-f8b402bf1fb5', { w: 900, h: 1200 }),
+  heroBarber: photo('photo-1605497788044-5a32c7078486', 4 / 5, HERO_WIDTHS, 70),
+  interiorRow: photo('photo-1536520002442-39764a41e987', 4 / 5, CARD_WIDTHS, 66),
 } as const

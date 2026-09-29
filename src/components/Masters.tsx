@@ -1,12 +1,13 @@
-import { motion } from 'framer-motion'
+﻿import { m } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { MASTERS } from '../data/content'
 import { fadeUp, stagger, viewportOnce } from '../lib/motion'
+import Photo from './ui/Photo'
 import { Section, SectionHeading } from './ui/Primitives'
 
 export default function Masters() {
   return (
-    <Section id="masters" tone="raised" className="py-20 md:py-28">
+    <Section id="masters" tone="raised" className="py-16 sm:py-20 md:py-28">
       <div className="shell">
         <SectionHeading
           eyebrow="Мастера"
@@ -20,24 +21,23 @@ export default function Masters() {
           className="[&_.eyebrow]:justify-center"
         />
 
-        <motion.ul
+        <m.ul
           variants={stagger(0.12)}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="mt-14 grid gap-5 md:grid-cols-3"
+          className="mt-10 grid gap-4 sm:mt-14 sm:gap-5 md:grid-cols-3"
         >
           {MASTERS.map((master, i) => (
-            <motion.li key={master.name} variants={fadeUp}>
+            <m.li key={master.name} variants={fadeUp}>
               <article className="card group h-full overflow-hidden">
-                <div className="relative aspect-[3/4] overflow-hidden bg-ink-3">
-                  <img
-                    src={master.img}
+                <div className="relative">
+                  <Photo
+                    photo={master.photo}
                     alt={master.alt}
-                    width={900}
-                    height={1200}
-                    loading="lazy"
-                    className="h-full w-full object-cover object-top transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
+                    sizes="(min-width: 768px) 31vw, 92vw"
+                    position="top center"
+                    className="object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
                   />
                   <div
                     aria-hidden="true"
@@ -48,18 +48,18 @@ export default function Masters() {
                   </span>
                 </div>
 
-                <div className="-mt-16 relative p-7">
+                <div className="-mt-14 relative p-6 sm:-mt-16 sm:p-7">
                   <span className="text-[0.65rem] font-medium uppercase tracking-[0.24em] text-bronze">
                     {master.role}
                   </span>
-                  <h3 className="mt-2.5 text-2xl font-extrabold tracking-tight text-bone">
+                  <h3 className="mt-2.5 text-xl font-extrabold tracking-tight text-bone sm:text-2xl">
                     {master.name}
                   </h3>
                   <p className="mt-3 text-[0.875rem] leading-relaxed text-mute">{master.text}</p>
 
                   <a
                     href="#booking"
-                    className="link-underline mt-6 inline-flex items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-bone transition-colors duration-300 hover:text-bronze"
+                    className="link-underline mt-5 inline-flex min-h-[2.75rem] items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-bone transition-colors duration-300 hover:text-bronze"
                   >
                     Подробнее
                     <ArrowRight
@@ -69,9 +69,9 @@ export default function Masters() {
                   </a>
                 </div>
               </article>
-            </motion.li>
+            </m.li>
           ))}
-        </motion.ul>
+        </m.ul>
       </div>
     </Section>
   )

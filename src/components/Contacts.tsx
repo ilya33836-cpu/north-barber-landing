@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowUpRight, Clock, MapPin, Phone } from 'lucide-react'
 import { CONTACT } from '../data/content'
 import { fadeUp, stagger, viewportOnce } from '../lib/motion'
@@ -17,7 +17,7 @@ function StylizedMap() {
       target="_blank"
       rel="noreferrer"
       aria-label="Открыть адрес в картах"
-      className="group relative block aspect-[4/3] w-full overflow-hidden border border-white/[0.09] bg-ink-2 md:aspect-[16/11]"
+      className="group relative block aspect-[4/3] w-full overflow-hidden border border-white/[0.09] bg-ink-2 sm:aspect-[16/11] md:aspect-[16/11]"
     >
       <svg
         viewBox="0 0 640 440"
@@ -135,12 +135,12 @@ function StylizedMap() {
         className="absolute inset-0 bg-[radial-gradient(60%_60%_at_40%_45%,transparent,rgba(13,13,13,0.75))]"
       />
 
-      <div className="absolute left-5 top-5 border border-bronze/30 bg-ink/90 px-4 py-3 backdrop-blur-sm">
+      <div className="absolute left-4 top-4 border border-bronze/30 bg-ink/90 px-4 py-3 sm:left-5 sm:top-5">
         <div className="text-[0.6rem] uppercase tracking-[0.24em] text-mute">Мы здесь</div>
         <div className="mt-1 text-[0.85rem] font-semibold text-bone">ул. Примерная, 24</div>
       </div>
 
-      <span className="absolute bottom-5 right-5 inline-flex items-center gap-2 border border-white/12 bg-ink/90 px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.16em] text-bone backdrop-blur-sm transition-colors duration-300 group-hover:border-bronze group-hover:text-bronze">
+      <span className="absolute bottom-4 left-4 inline-flex min-h-[2.75rem] items-center gap-2 border border-white/12 bg-ink/90 px-4 py-2.5 text-[0.7rem] uppercase tracking-[0.16em] text-bone transition-colors duration-300 group-hover:border-bronze group-hover:text-bronze sm:bottom-5 sm:left-auto sm:right-5">
         Построить маршрут
         <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.8} />
       </span>
@@ -150,32 +150,32 @@ function StylizedMap() {
 
 export default function Contacts() {
   return (
-    <Section id="contacts" className="py-20 md:py-28">
-      <div className="shell grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
-        <motion.div
+    <Section id="contacts" className="py-16 sm:py-20 md:py-28">
+      <div className="shell grid gap-10 sm:gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+        <m.div
           variants={stagger(0.12)}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
         >
-          <motion.p variants={fadeUp} className="eyebrow">
+          <m.p variants={fadeUp} className="eyebrow">
             Контакты
-          </motion.p>
-          <motion.h2
+          </m.p>
+          <m.h2
             variants={fadeUp}
-            className="mt-5 text-[clamp(2rem,5vw,3.4rem)] text-bone"
+            className="mt-4 text-[clamp(1.85rem,5vw,3.4rem)] text-bone sm:mt-5"
           >
             Приходите <span className="text-bronze">в NORTH</span>
-          </motion.h2>
-          <motion.p
+          </m.h2>
+          <m.p
             variants={fadeUp}
-            className="mt-5 max-w-md text-[0.98rem] leading-relaxed text-mute"
+            className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-mute sm:mt-5"
           >
             В двух шагах от метро, с парковкой во дворе. Приходите за пятнадцать минут до начала — кофе
             и разговор с мастером включены в визит.
-          </motion.p>
+          </m.p>
 
-          <motion.ul variants={stagger(0.1, 0.15)} className="mt-10 border-t border-white/[0.08]">
+          <m.ul variants={stagger(0.1, 0.15)} className="mt-8 border-t border-white/[0.08] sm:mt-10">
             {ROWS.map((row) => {
               const Icon = row.icon
               const content = (
@@ -195,24 +195,26 @@ export default function Contacts() {
               )
 
               return (
-                <motion.li key={row.label} variants={fadeUp} className="border-b border-white/[0.08]">
+                <m.li key={row.label} variants={fadeUp} className="border-b border-white/[0.08]">
                   {'href' in row && row.href ? (
                     <a
                       href={row.href}
-                      className="group flex items-center gap-4 py-6 transition-colors duration-300"
+                      className="group flex min-h-[4.25rem] items-center gap-4 py-5 transition-colors duration-300 sm:py-6"
                     >
                       {content}
                     </a>
                   ) : (
-                    <div className="group flex items-center gap-4 py-6">{content}</div>
+                    <div className="group flex min-h-[4.25rem] items-center gap-4 py-5 sm:py-6">
+                      {content}
+                    </div>
                   )}
-                </motion.li>
+                </m.li>
               )
             })}
-          </motion.ul>
-        </motion.div>
+          </m.ul>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
@@ -222,7 +224,7 @@ export default function Contacts() {
           <p className="mt-4 text-[0.72rem] text-mute">
             Схема условная: барбершоп работает в демонстрационном режиме.
           </p>
-        </motion.div>
+        </m.div>
       </div>
     </Section>
   )

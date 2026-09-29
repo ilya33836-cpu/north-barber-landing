@@ -6,6 +6,7 @@ import Gallery from './components/Gallery'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Masters from './components/Masters'
+import MobileBar from './components/MobileBar'
 import Pricing from './components/Pricing'
 import Process from './components/Process'
 import Services from './components/Services'
@@ -38,6 +39,7 @@ export default function App() {
         <Contacts />
       </main>
       <Footer />
+      <MobileBar />
     </div>
   )
 }
