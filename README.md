@@ -69,6 +69,7 @@ vercel deploy --prod
 ## Заметки
 
 - Backend не используется: форма записи работает как локальное success-state.
-- Изображения подключены по прямым URL Unsplash через `srcset`/`sizes` (см. `src/lib/images.ts` и `src/components/ui/Photo.tsx`): на телефоне грузятся файлы в 4–8 раз меньше десктопных.
+- Изображения лежат локально в `public/images` (WebP, 3.6 МБ на 17 картинок × несколько ширин). Внешний Unsplash недоступен из РФ, поэтому hotlink-ссылок в проекте больше нет. Перегенерировать: переписать ключи в `src/lib/images.ts` / `src/data/content.ts` и заново нарезать файлы `<key>-<width>.webp` в `public/images` плюс `public/images/lqip/<key>.webp`.
+- `srcset`/`sizes` собирает компонент `src/components/ui/Photo.tsx`, LQIP — 24px-превью под каждым lazy-изображением.
 - Шрифты Manrope и Inter лежат локально в `src/assets/fonts` (кириллический и латинский сабсеты, `font-display: swap`); внешних запросов к Google Fonts нет.
 - Мобильная оптимизация: sticky-бар «Записаться/Позвонить», галерея превращается в свайп-карусель, у полей ввода 16px (iOS не зумит страницу при фокусе), тяжёлые `backdrop-filter` и полноэкранное зерно отключены на телефонах.

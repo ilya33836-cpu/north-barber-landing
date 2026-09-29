@@ -3,7 +3,7 @@ import { Maximize2, X } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 import { GALLERY } from '../data/content'
 import { useLockBody } from '../lib/hooks'
-import { photoUrl } from '../lib/images'
+import { photoSrcSet, photoUrl } from '../lib/images'
 import { EASE, fadeUp, stagger, viewportOnce } from '../lib/motion'
 import Photo from './ui/Photo'
 import { Section, SectionHeading } from './ui/Primitives'
@@ -130,12 +130,12 @@ export default function Gallery() {
               onClick={(event) => event.stopPropagation()}
             >
               <img
-                src={photoUrl(current.photoLarge, 1200)}
-                srcSet={current.photoLarge.widths.map((w) => `${photoUrl(current.photoLarge, w)} ${w}w`).join(', ')}
+                src={photoUrl(current.photo, 1080)}
+                srcSet={photoSrcSet(current.photo)}
                 sizes="100vw"
                 alt={current.caption}
-                width={1200}
-                height={Math.round(1200 / current.photoLarge.ratio)}
+                width={1080}
+                height={Math.round(1080 / current.photo.ratio)}
                 className="max-h-[70svh] w-full object-contain"
               />
               <figcaption className="mt-4 flex items-center justify-between gap-4 text-[0.7rem] uppercase tracking-[0.2em] text-mute sm:mt-5 sm:text-[0.72rem] sm:tracking-[0.22em]">

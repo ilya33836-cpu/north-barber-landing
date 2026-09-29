@@ -17,7 +17,7 @@ import {
   UserCheck,
   type LucideIcon,
 } from 'lucide-react'
-import { CARD_WIDTHS, GALLERY_LARGE_WIDTHS, GALLERY_WIDTHS, photo, type Photo } from '../lib/images'
+import { CARD_WIDTHS, GALLERY_WIDTHS, photo, type Photo } from '../lib/images'
 
 export const CONTACT = {
   address: 'г. Москва, ул. Примерная, 24',
@@ -136,97 +136,49 @@ export const MASTERS = [
     name: 'Алекс Рид',
     role: 'Senior Barber',
     text: '12 лет в профессии. Классика, форма и работа с текстурой.',
-    photo: photo('photo-1567894340315-735d7c361db0', 3 / 4, CARD_WIDTHS, 70),
+    photo: photo('master-alex', 3 / 4, CARD_WIDTHS),
     alt: 'Барбер Алекс Рид работает с клиентом',
   },
   {
     name: 'Максим Блейк',
     role: 'Fade Specialist',
     text: 'Фирменные переходы и машинка без размытых линий.',
-    photo: photo('photo-1635273051937-a0ddef9573b6', 3 / 4, CARD_WIDTHS, 70),
+    photo: photo('master-max', 3 / 4, CARD_WIDTHS),
     alt: 'Барбер Максим Блейк выполняет стрижку',
   },
   {
-    name: 'Даниил Норт',
+    name: 'Данил Норт',
     role: 'Beard Artist',
     text: 'Скульптура бороды: чёткая линия, форма, симметрия.',
-    photo: photo('photo-1591425455205-c238fc7e4230', 3 / 4, CARD_WIDTHS, 70),
-    alt: 'Барбер Даниил Норт моделирует бороду',
+    photo: photo('master-danil', 3 / 4, CARD_WIDTHS),
+    alt: 'Барбер Данил Норт моделирует бороду',
   },
 ]
 
 type Shot = { id: string; ratio: number; caption: string }
 
 const rawShots: Shot[] = [
-  {
-    id: 'photo-1599351431202-1e0f0137899a',
-    ratio: 4 / 5,
-    caption: 'Бритьё опасной бритвой',
-  },
-  {
-    id: 'photo-1635273051839-003bf06a8751',
-    ratio: 3 / 4,
-    caption: 'Чистый градиент',
-  },
-  {
-    id: 'photo-1536520002442-39764a41e987',
-    ratio: 3 / 4,
-    caption: 'Интерьер зала',
-  },
-  {
-    id: 'photo-1657105052497-f996284ffff8',
-    ratio: 4 / 5,
-    caption: 'Проработка деталей',
-  },
-  {
-    id: 'photo-1621645582931-d1d3e6564943',
-    ratio: 1,
-    caption: 'Кресло NORTH',
-  },
-  {
-    id: 'photo-1517832606299-7ae9b720a186',
-    ratio: 1,
-    caption: 'Борода в деталях',
-  },
-  {
-    id: 'photo-1647140655214-e4a2d914971f',
-    ratio: 4 / 5,
-    caption: 'Стрижка ножницами',
-  },
-  {
-    id: 'photo-1621605815971-fbc98d665033',
-    ratio: 1,
-    caption: 'Инструменты',
-  },
-  {
-    id: 'photo-1596728325488-58c87691e9af',
-    ratio: 4 / 5,
-    caption: 'Горячее полотенце',
-  },
-  {
-    id: 'photo-1591425455205-c238fc7e4230',
-    ratio: 1,
-    caption: 'Текстура',
-  },
-  {
-    id: 'photo-1503951914875-452162b0f3f1',
-    ratio: 3 / 4,
-    caption: 'Гость в кресле',
-  },
-  {
-    id: 'photo-1493256338651-d82f7acb2b38',
-    ratio: 1,
-    caption: 'Работа машинкой',
-  },
+  { id: 'gal-01', ratio: 4 / 5, caption: 'Бритьё опасной бритвой' },
+  { id: 'gal-02', ratio: 3 / 4, caption: 'Чистый градиент' },
+  { id: 'gal-03', ratio: 3 / 4, caption: 'Интерьер зала' },
+  { id: 'gal-04', ratio: 4 / 5, caption: 'Проработка деталей' },
+  { id: 'gal-05', ratio: 1, caption: 'Кресло NORTH' },
+  { id: 'gal-06', ratio: 1, caption: 'Борода в деталях' },
+  { id: 'gal-07', ratio: 4 / 5, caption: 'Стрижка ножницами' },
+  { id: 'gal-08', ratio: 1, caption: 'Инструменты' },
+  { id: 'gal-09', ratio: 4 / 5, caption: 'Горячее полотенце' },
+  { id: 'gal-10', ratio: 1, caption: 'Текстура' },
+  { id: 'gal-11', ratio: 3 / 4, caption: 'Гость в кресле' },
+  { id: 'gal-12', ratio: 1, caption: 'Работа машинкой' },
 ]
 
-export const GALLERY: { id: string; caption: string; photo: Photo; photoLarge: Photo }[] =
-  rawShots.map((shot) => ({
+export const GALLERY: { id: string; caption: string; photo: Photo }[] = rawShots.map(
+  (shot) => ({
     id: shot.id,
     caption: shot.caption,
-    photo: photo(shot.id, shot.ratio, GALLERY_WIDTHS, 64),
-    photoLarge: photo(shot.id, shot.ratio, GALLERY_LARGE_WIDTHS, 74),
-  }))
+    photo: photo(shot.id, shot.ratio, GALLERY_WIDTHS),
+  }),
+)
 
 export const WHY_POINTS: Feature[] = [
   {
