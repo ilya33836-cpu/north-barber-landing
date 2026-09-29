@@ -37,16 +37,27 @@ src/
 Header · Hero · TrustBlock · Services · Masters · Gallery · WhyUs · Pricing ·
 Process · Testimonials · Faq · CtaBooking · Contacts · Footer
 
-## Деплой на Vercel
+## Деплой
 
-Репозиторий: `github.com/ilya33836-cpu/north-barber-landing` (ветка `main` → production).
+### GitHub Pages (активный)
+
+Сайт: **https://ilya33836-cpu.github.io/north-barber-landing/**
+
+Деплой автоматический: workflow `.github/workflows/deploy-pages.yml` собирает
+проект на каждом push в `main` и публикует его через GitHub Pages.
+Базовый путь передаётся в сборку через `VITE_BASE` (см. `vite.config.ts`),
+поэтому локальная разработка работает с обычным `/`.
+
+Ручной перезапуск деплоя: вкладка **Actions → Deploy to GitHub Pages → Run workflow**.
+
+### Vercel (альтернатива)
 
 1. На https://vercel.com → **Add New… → Project** → импортировать репозиторий.
-2. Настройки можно оставить по умолчанию: Framework Preset определится как **Vite**,
-   Build Command `npm run build`, Output Directory `dist` (зафиксировано в `vercel.json`).
-3. **Deploy**. Каждый push в `main` даёт production-деплой, PR — preview.
+2. Настройки по умолчанию: Framework Preset **Vite**, Build Command `npm run build`,
+   Output Directory `dist` (зафиксировано в `vercel.json`).
+3. **Deploy**. Push в `main` даёт production-деплой, PR — preview.
 
-Альтернатива через CLI:
+Через CLI:
 
 ```bash
 npm install -g vercel
